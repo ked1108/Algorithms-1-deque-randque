@@ -74,6 +74,10 @@ public class Deque<Item> implements Iterable<Item> {
         else old.next = last;
     }
 
+    public Item remove() {
+        throw new UnsupportedOperationException("We don't do that here");
+    }
+
     public Item removeFirst() {
         checkList();
         Item item = first.item;
@@ -134,6 +138,5 @@ public class Deque<Item> implements Iterable<Item> {
     }
 
     public static void main(String[] args) {
-
     }
 }
