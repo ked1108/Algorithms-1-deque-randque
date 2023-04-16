@@ -7,5 +7,6 @@ Status: Pending
 
 ## TODO
 
-- [ ] Implement Deques
-- [ ] Implement Randomized Queues
+- [x] Implement Deques
+- [x] Implement Randomized Queues
+- [x] Implement Permutations
