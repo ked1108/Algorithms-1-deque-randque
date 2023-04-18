@@ -9,14 +9,14 @@ import java.util.NoSuchElementException;
 
 public class Deque<Item> implements Iterable<Item> {
 
-    private Node<Item> first;
-    private Node<Item> last;
+    private Node first;
+    private Node last;
     private int n;
 
-    private class Node<Item> {
-        private Item item;
-        private Node<Item> next;
-        private Node<Item> prev;
+    private class Node {
+        private Item item = null;
+        private Node next = null;
+        private Node prev = null;
     }
 
     public Deque() {
@@ -37,7 +37,7 @@ public class Deque<Item> implements Iterable<Item> {
     }
 
     public boolean isEmpty() {
-        return first == null;
+        return n == 0;
     }
 
     public int size() {
@@ -47,16 +47,17 @@ public class Deque<Item> implements Iterable<Item> {
     public void addFirst(Item item) {
         checkItem(item);
 
-        Node<Item> old = first;
-        first = new Node<Item>();
+        Node oldf = first;
+        first = new Node();
         first.item = item;
-        first.next = old;
-        first.prev = null;
+        first.next = oldf;
 
         if (isEmpty()) {
             last = first;
         }
-        else old.prev = first;
+        else {
+            oldf.prev = first;
+        }
 
         n++;
     }
@@ -64,19 +65,17 @@ public class Deque<Item> implements Iterable<Item> {
     public void addLast(Item item) {
         checkItem(item);
 
-        Node<Item> old = last;
-        last = new Node<Item>();
+        Node oldl = last;
+        last = new Node();
         last.item = item;
-        last.next = null;
-        last.prev = old;
+        last.prev = oldl;
 
         if (isEmpty()) first = last;
-        else old.next = last;
+        else oldl.next = last;
+
+        n++;
     }
 
-    public Item remove() {
-        throw new UnsupportedOperationException("We don't do that here");
-    }
 
     public Item removeFirst() {
         checkList();
@@ -113,7 +112,7 @@ public class Deque<Item> implements Iterable<Item> {
     }
 
     private class ListIterator implements Iterator<Item> {
-        private Node<Item> current;
+        private Node current;
 
         public ListIterator() {
             current = first;

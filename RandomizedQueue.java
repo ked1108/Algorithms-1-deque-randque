@@ -48,7 +48,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     // add the item
     public void enqueue(Item item) {
         if (item == null) {
-            throw new NoSuchElementException("NO Such Element exists");
+            throw new IllegalArgumentException("NO Such Element exists");
         }
         items[n++] = item;
         if (n == items.length) {
